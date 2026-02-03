@@ -10,29 +10,33 @@ class KlausmeierParameters:
         self.R = R   # pobór wody [1/kg]
         self.J = J   # konwersja wody na biomasę [kg/mm]
         self.M = M   # śmiertelność [1/h]
-        self.Dw = Dw # dyfuzja wody
-        self.Dn = Dn # dyfuzja biomasy
+        self.Dw = Dw # dyfuzja wody [m^2/h]
+        self.Dn = Dn # dyfuzja biomasy [m^2/h]
 
     def get_scaling_factors(self):
         """ obliczanie stałych skalujących W0, N0, T0"""
-        # T0 L*T0 = 1
+        # L*T0 = 1
         T0 = 1.0 / self.L
         
-        # N0 R*T0*N0^2 = 1
+        # R*T0*N0^2 = 1
         N0 = np.sqrt(self.L / self.R)
         
-        # W0 J*R*W0*T0*N0 = 1
+        # J*R*W0*T0*N0 = 1
         W0 = 1.0 / (self.J * self.R * T0 * N0)
+
+        # przyjmujemy X0 = 1.0 
+        # 1 jednostka siatki to 1 metr
+        X0 = 1.0
         
-        return W0, N0, T0
+        return W0, N0, T0, X0
 
     def get_dimensionless_params(self):
-        W0, N0, T0 = self.get_scaling_factors()
+        W0, N0, T0, X0 = self.get_scaling_factors()
         
         a = (self.A * T0) / W0
         m = self.M * T0
-        d1 = self.Dw * T0
-        d2 = self.Dn * T0
+        d1 = (self.Dw * T0) / (X0**2)
+        d2 = (self.Dn * T0) / (X0**2)
         
         return {
             "a": a,
