@@ -36,3 +36,7 @@ Analiza wariancji przestrzennej wykazała gwałtowny wzrost fluktuacji przed osi
 1. **Istnienie punktów krytycznych**: Model potwierdził, że ekosystemy półpustynne są narażone na gwałtowne zmiany stanu, których nie da się łatwo cofnąć ze względu na efekt histerezy.
 2. **Samoorganizacja jako mechanizm przetrwania**: Powstawanie wzorów (cętek, pasów) nie jest przypadkowe – to sposób, w jaki roślinność optymalizuje dostęp do deficytowej wody.
 3. **Wartość predykcyjna**: Wzrost wariancji przestrzennej oraz zmiany w strukturze wzorów mogą służyć jako wczesny system ostrzegania przed pustynnieniem w rzeczywistych ekosystemach.
+
+## Instalacja
+Aby zainstalować wszystkie wymagane biblioteki, uruchom:
+`pip install -r requirements.txt`
